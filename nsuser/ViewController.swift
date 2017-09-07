@@ -12,121 +12,146 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 {
    
     @IBOutlet weak var tableView: UITableView!
-    var assignments = [""]
+    var assignments: Array<Dictionary<String, String>>?
+    
+    let userDefaults = UserDefaults.standard
+    
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        assignments.append("Enter Classes Below")
+        
         loadData()
       
        
     }
+   
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
-        return assignments.count
+        return assignments!.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = assignments[indexPath.row]
+        userDefaults.set(assignments , forKey: "classes")
+        
+        
+        
+        //let value  = userDefaults.string(forKey: "classes")
+
+        
+        cell.textLabel?.text = assignments?[indexPath.row].keys
+        cell.detailTextLabel?.text = assignments?[indexPath.row].values
+        
+        
+        
+       
         
         return cell
     }
+        @IBAction func addButton(_ sender: Any)
+        {
+            let imagePickerController = UIImagePickerController()
+    
+    
+    
+    
+    
+            let alert = UIAlertController(title: "New Activity", message: "Enter The Following", preferredStyle: .alert)
+    
+    
+    
+            alert.addTextField(configurationHandler: { (textField) -> Void in
+    
+    
+    
+                textField.placeholder = "Date (MM/DD/YY)"
+    
+    
+    
+            })
+    
+    
+    
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) in
+    
+    
+    
+    
+    
+            }))
+    
+    
+    
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (action) -> Void in
+    
+    
+    
+    
+    
+                let textField = (alert?.textFields![0])! as UITextField
+    
+    
+    
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                
+                
+                self.userDefaults.set( self.assignments , forKey: "classes")
+                
+                
+                
+                let value  = self.userDefaults.string(forKey: "classes")
 
     
-    @IBAction func addButton(_ sender: Any)
-    {
-        let imagePickerController = UIImagePickerController()
-        
-        
-        
-        
-        
-        let alert = UIAlertController(title: "New Activity", message: "Enter The Following", preferredStyle: .alert)
-        
-        
-        
-        alert.addTextField(configurationHandler: { (textField) -> Void in
-            
-            
-            
-            textField.placeholder = "Date (MM/DD/YY)"
-            
-            
-            
-        })
-        
-        
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) in
+
+                self.assignments["classes"] = "\(textField.text!)"
+    
+    
+    
+    
+                print("Text field: \(textField.text)")
+    
+                self.tableView.reloadData()
+    
+                self.saveData()
+    
+                self.loadData()
+    
+                
+            }))
             
             
             
             
             
-        }))
-        
-        
-        
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (action) -> Void in
+            // 4. Present the alert.
             
-            
-            
-            
-            
-            let textField = (alert?.textFields![0])! as UITextField
-            
-            
-            
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            
-            
-            
-            
-            self.assignments.append(textField.text!)
-            
-            
-            
-            
-            print("Text field: \(textField.text)")
-            
-            self.tableView.reloadData()
-            
-            self.saveData()
-            
-            self.loadData()
-            
-        }))
-        
-        
-        
-        
-        
-        // 4. Present the alert.
-        
-        self.present(alert, animated: true, completion: nil)
-    }
+            self.present(alert, animated: true, completion: nil)
+        }
+
+    
+    
     
     func saveData()
     {
         let userDefaults = UserDefaults.standard
-        userDefaults.set( "String", forKey: "Key")
+        userDefaults.set( assignments , forKey: "classes")
         
-        //To retrieve from the key
+       
         
-        let value  = userDefaults.string(forKey: "Key")
+        let value  = userDefaults.string(forKey: "classes")
         print(value)
     }
     
     func loadData()
     {
         let userDefaults = UserDefaults.standard
-        userDefaults.set( "String", forKey: "Key")
+        userDefaults.set( assignments , forKey: "classes")
         
         
         

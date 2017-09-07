@@ -8,28 +8,88 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController
+{
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
+//    @IBAction func addButton(_ sender: Any)
+//    {
+//        let imagePickerController = UIImagePickerController()
+//        
+//        
+//        
+//        
+//        
+//        let alert = UIAlertController(title: "New Activity", message: "Enter The Following", preferredStyle: .alert)
+//        
+//        
+//        
+//        alert.addTextField(configurationHandler: { (textField) -> Void in
+//            
+//            
+//            
+//            textField.placeholder = "Date (MM/DD/YY)"
+//            
+//            
+//            
+//        })
+//        
+//        
+//        
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) in
+//            
+//            
+//            
+//            
+//            
+//        }))
+//        
+//        
+//        
+//        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (action) -> Void in
+//            
+//            
+//            
+//            
+//            
+//            let textField = (alert?.textFields![0])! as UITextField
+//            
+//            
+//            
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//            
+//            
+//            
+//            
+//            self.assignments.append(textField.text!)
+//            
+//            
+//            
+//            
+//            print("Text field: \(textField.text)")
+//            
+//            self.tableView.reloadData()
+//            
+//            self.saveData()
+//            
+//            self.loadData()
+//            
+//            self.assignments.append(textField.text!)
+//        }))
+//        
+//        
+//        
+//        
+//        
+//        // 4. Present the alert.
+//        
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
