@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
-        return assignments!.count
+        return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -45,8 +45,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //let value  = userDefaults.string(forKey: "classes")
 
         
-        cell.textLabel?.text = assignments?[indexPath.row].keys
-        cell.detailTextLabel?.text = assignments?[indexPath.row].values
+        cell.textLabel?.text = assignments?[indexPath.row]["classes"]
+        cell.detailTextLabel?.text = assignments?[indexPath.row]["classes"]
+        
         
         
         
@@ -98,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                 
                 
                 self.userDefaults.set( self.assignments , forKey: "classes")
@@ -109,7 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
 
-                self.assignments["classes"] = "\(textField.text!)"
+//                self.assignments["classes"] = "\(textField.text!)"
     
     
     
@@ -140,7 +141,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func saveData()
     {
         let userDefaults = UserDefaults.standard
-        userDefaults.set( assignments , forKey: "classes")
+        userDefaults.set(assignments , forKey: "classes")
         
        
         
@@ -157,6 +158,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+//    {
+//        let nvc = segue.destination as! SecondViewController
+//        let indexPath = tableView.indexPathForSelectedRow
+//    }
    
    
     
