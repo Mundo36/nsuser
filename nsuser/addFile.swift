@@ -11,13 +11,34 @@ import UIKit
 class addClass: UIViewController
 {
     
+    @IBAction func addBttn(_ sender: Any)
+    {
+      
+        userData = true
+        UserDefaults.standard.set(userData , forKey: "userData")
+        
+        if textField.text == ""
+        {
+            textField.backgroundColor = UIColor.red
+            
+        }
+        else {
+            textField.backgroundColor = UIColor.white
+            assignments.append(textField.text!)
+            
+            UserDefaults.standard.set(assignments, forKey: "classes")
+        }
+        
+    }
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
        
     }
-    @IBAction func doneBttn(_ sender: Any)
-    {
-        dismiss(animated: true, completion: nil)
-    }
+    
+  
 }

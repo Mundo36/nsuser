@@ -8,32 +8,29 @@
 
 import UIKit
 
+var assignments = [String]()
+
+var userData = false
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
    
     @IBOutlet weak var tableView: UITableView!
-    var assignments: Array<Dictionary<String, String>>?
+    
     
     let userDefaults = UserDefaults.standard
     
     
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        loadData()
-      
-       
-    }
-   
+    
+    
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
-        return 10
+        return assignments.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -43,97 +40,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         //let value  = userDefaults.string(forKey: "classes")
-
-        
-        cell.textLabel?.text = assignments?[indexPath.row]["classes"]
-        cell.detailTextLabel?.text = assignments?[indexPath.row]["classes"]
         
         
+        cell.textLabel?.text = assignments[indexPath.row]
+        cell.detailTextLabel?.text = assignments[indexPath.row]
         
         
-       
+        
+        
+        
         
         return cell
     }
-        @IBAction func addButton(_ sender: Any)
+    
+    
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        userData = UserDefaults.standard.bool(forKey: "userData")
+        
+        
+        if userData == true
         {
-            let imagePickerController = UIImagePickerController()
-    
-    
-    
-    
-    
-            let alert = UIAlertController(title: "New Activity", message: "Enter The Following", preferredStyle: .alert)
-    
-    
-    
-            alert.addTextField(configurationHandler: { (textField) -> Void in
-    
-    
-    
-                textField.placeholder = "Date (MM/DD/YY)"
-    
-    
-    
-            })
-    
-    
-    
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) in
-    
-    
-    
-    
-    
-            }))
-    
-    
-    
-            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (action) -> Void in
-    
-    
-    
-    
-    
-                let textField = (alert?.textFields![0])! as UITextField
-    
-    
-    
-//                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                
-                
-                self.userDefaults.set( self.assignments , forKey: "classes")
-                
-                
-                
-                let value  = self.userDefaults.string(forKey: "classes")
-
-    
-
-//                self.assignments["classes"] = "\(textField.text!)"
-    
-    
-    
-    
-                print("Text field: \(textField.text)")
-    
-                self.tableView.reloadData()
-    
-                self.saveData()
-    
-                self.loadData()
-    
-                
-            }))
+            assignments = UserDefaults.standard.object(forKey: "classes") as! [String]
             
             
-            
-            
-            
-            // 4. Present the alert.
-            
-            self.present(alert, animated: true, completion: nil)
         }
+        else
+        {
+            assignments.append("NO USER DATA")
+            UserDefaults.standard.object(forKey: "classes")
+            
+            if assignments[0] == "NO USER DATA"
+            {
+                assignments.remove(at: 0)
+                UserDefaults.standard.object(forKey: "calsses")
+            }
+        }
+        
+       
+      tableView.reloadData()
+       
+    }
+   
+    
+    
+    
+   
+    
+    
+
 
     
     
@@ -159,12 +117,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//    {
-//        let nvc = segue.destination as! SecondViewController
-//        let indexPath = tableView.indexPathForSelectedRow
-//    }
-   
+    
+    
+
    
     
     

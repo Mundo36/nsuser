@@ -67,6 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UG7-7u-efz">
                             <connections>
                                 <action selector="addButton:" destination="BYZ-38-t0r" id="L3w-nj-CUL"/>
+                                <segue destination="omD-Vd-sVk" kind="show" id="bdf-B4-6W7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -90,8 +91,28 @@
                     <view key="view" contentMode="scaleToFill" id="bLz-LH-0MM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXH-uY-qrT">
+                                <rect key="frame" x="90" y="208" width="195" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addBttn:" destination="omD-Vd-sVk" eventType="touchUpInside" id="X85-sS-5KF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Exb-v5-40z">
+                                <rect key="frame" x="92" y="170" width="191" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="Exb-v5-40z" id="PsL-mX-dQg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reH-Vb-j90" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,4 +137,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bdf-B4-6W7"/>
+    </inferredMetricsTieBreakers>
 </document>
