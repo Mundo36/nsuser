@@ -54,6 +54,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == UITableViewCellEditingStyle.delete
+        {
+            assignments.remove(at: indexPath.row)
+            UserDefaults.standard.set(assignments, forKey: "classes")
+        }
+        tableView.reloadData()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        tableView.reloadData()
+    }
+    
     
     override func viewDidLoad()
     {
