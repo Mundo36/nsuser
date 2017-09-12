@@ -92,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if assignments[0] == "NO USER DATA"
             {
                 assignments.remove(at: 0)
-                UserDefaults.standard.object(forKey: "calsses")
+                UserDefaults.standard.object(forKey: "classes")
             }
         }
         

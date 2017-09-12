@@ -41,4 +41,11 @@ class addClass: UIViewController
     }
     
   
+    //func saveAssignments()
+    //{
+    //let defaults = UserDefaults.standard
+    //defaults.set(assignments, forKey: "Assignments")
+    //}
+    
+    
 }
